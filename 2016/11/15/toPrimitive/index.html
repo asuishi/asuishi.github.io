@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 一川碎石</title>
+  <title>toPrimitive | 一川碎石</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一川碎石">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="ToPrimitiveToPrimitive 用于将参数转换成原始类型(Primitive)具体的逻辑参见规范
+12345function ToPrimitive(x, hint) &amp;#123;    if (!IS_OBJECT(x)) return x;  if (hint == NO_HINT) hint = (IS_DATE(x)) ? STRING_HINT : NUMBER_HINT;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="toPrimitive">
+<meta property="og:url" content="http://yoursite.com/2016/11/15/toPrimitive/index.html">
 <meta property="og:site_name" content="一川碎石">
+<meta property="og:description" content="ToPrimitiveToPrimitive 用于将参数转换成原始类型(Primitive)具体的逻辑参见规范
+12345function ToPrimitive(x, hint) &amp;#123;    if (!IS_OBJECT(x)) return x;  if (hint == NO_HINT) hint = (IS_DATE(x)) ? STRING_HINT : NUMBER_HINT;">
+<meta property="og:image" content="http://yoursite.com/img/ToPrimitive.png">
+<meta property="og:updated_time" content="2016-11-15T13:42:48.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一川碎石">
+<meta name="twitter:title" content="toPrimitive">
+<meta name="twitter:description" content="ToPrimitiveToPrimitive 用于将参数转换成原始类型(Primitive)具体的逻辑参见规范
+12345function ToPrimitive(x, hint) &amp;#123;    if (!IS_OBJECT(x)) return x;  if (hint == NO_HINT) hint = (IS_DATE(x)) ? STRING_HINT : NUMBER_HINT;">
+<meta name="twitter:image" content="http://yoursite.com/img/ToPrimitive.png">
   
     <link rel="alternative" href="/atom.xml" title="一川碎石" type="application/atom+xml">
   
@@ -137,176 +146,125 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-toPrimitive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
+    <h1 class="article-title" itemprop="name">
+      toPrimitive
+    </h1>
   
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
+        <h3 id="ToPrimitive"><a href="#ToPrimitive" class="headerlink" title="ToPrimitive"></a>ToPrimitive</h3><p>ToPrimitive 用于将参数转换成原始类型(Primitive)<br>具体的逻辑参见<a href="https://es5.github.io/#x9.1" target="_blank" rel="external">规范</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ToPrimitive</span>(<span class="params">x, hint</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (!IS_OBJECT(x)) <span class="keyword">return</span> x;</div><div class="line">  <span class="keyword">if</span> (hint == NO_HINT) hint = (IS_DATE(x)) ? STRING_HINT : NUMBER_HINT;</div><div class="line">  <span class="keyword">return</span> (hint == NUMBER_HINT) ? DefaultNumber(x) : DefaultString(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li><p>如果不是对象，直接返回</p>
+</li>
+<li><p>否则会根据传入的hint来调用DefaultNumber和DefaultString，(如果没有hint,默认值为NUMBER_HINT，只有一个例外Date)</p>
+</li>
+</ul>
+<ul>
+<li><p>DefaultNumber：首先x.valueOf，如果为primitive，则返回valueOf后的值，否则继续调用x.toString，如果为primitive，则返回toString后的值，否则抛出异常</p>
+</li>
+<li><p>DefaultString：和DefaultNumber正好相反，先调用toString，如果不是primitive再调用valueOf</p>
+</li>
+</ul>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf"></a>valueOf</h3><p>返回的是参数本身或者包装值(相当于调用<a href="https://es5.github.io/#x9.9" target="_blank" rel="external">toObject</a>),<br>直接用例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">123</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdef"</span>;</div><div class="line"><span class="keyword">var</span> bool = <span class="literal">true</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> a =<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(num.valueOf() === num);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(str.valueOf() === str);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(bool.valueOf() === bool);  <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.valueOf() === obj);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(arr.valueOf() === arr);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(f.valueOf() === f);  <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="comment">// null undefined 不能调用valueOf</span></div></pre></td></tr></table></figure>
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h3><p>返回的是一个字符串，很多函数重写了该方法，参见网上一张截图<br><img src="/img/ToPrimitive.png" alt="toString"></p>
+<blockquote>
+<p>总结一下,对象类型转换成原始类型通过调用ToPrimitive方法实现，进而调用valueOf和toString方法，大多数都是先调用valueOf方法，Date除外。</p>
+</blockquote>
+<p><strong><em> ps:valueOf 和 toString 方法可以自己重写</em></strong></p>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/15/toPrimitive/" class="archive-article-date">
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/15/toPrimitive/" class="archive-article-date">
   	<time datetime="2016-11-15T13:30:21.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/15/toPrimitive/">toPrimitive</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/显式类型转换/" class="archive-article-date">
-  	<time datetime="2016-11-13T09:23:29.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/显式类型转换/">显式类型转换</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/13/显式类型转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">显式类型转换</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/javascript类型转换/" class="archive-article-date">
-  	<time datetime="2016-11-13T08:16:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/javascript类型转换/">javascript类型转换</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/博客搬家/" class="archive-article-date">
-  	<time datetime="2016-11-13T06:05:42.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/博客搬家/">博客搬家</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="toPrimitive" data-title="toPrimitive" data-url="http://yoursite.com/2016/11/15/toPrimitive/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/hello-world/" class="archive-article-date">
-  	<time datetime="2016-11-13T05:38:44.050Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
       </div>
@@ -329,8 +287,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

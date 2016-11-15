@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>显式类型转换 | 一川碎石</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="显式转换成Number1,原始类型值的转换规则
+数值：转换后还是原来的值
+字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0
+布尔值：true转成1，false转成0
+undefined：转成NaN
+null：转成0
+
+2,对象的转换规则
+先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="显式类型转换">
+<meta property="og:url" content="http://yoursite.com/2016/11/13/显式类型转换/index.html">
+<meta property="og:site_name" content="一川碎石">
+<meta property="og:description" content="显式转换成Number1,原始类型值的转换规则
+数值：转换后还是原来的值
+字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0
+布尔值：true转成1，false转成0
+undefined：转成NaN
+null：转成0
+
+2,对象的转换规则
+先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行">
+<meta property="og:updated_time" content="2016-11-15T13:43:39.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="显式类型转换">
+<meta name="twitter:description" content="显式转换成Number1,原始类型值的转换规则
+数值：转换后还是原来的值
+字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0
+布尔值：true转成1，false转成0
+undefined：转成NaN
+null：转成0
+
+2,对象的转换规则
+先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行">
+  
+    <link rel="alternative" href="/atom.xml" title="一川碎石" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://pic.baike.soso.com/p/20130826/20130826163048-1194201312.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">asuishi</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">asuishi</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://pic.baike.soso.com/p/20130826/20130826163048-1194201312.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">asuishi</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-显式类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      显式类型转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="显式转换成Number"><a href="#显式转换成Number" class="headerlink" title="显式转换成Number"></a>显式转换成Number</h3><h4 id="1-原始类型值的转换规则"><a href="#1-原始类型值的转换规则" class="headerlink" title="1,原始类型值的转换规则"></a>1,原始类型值的转换规则</h4><ul>
+<li>数值：转换后还是原来的值</li>
+<li>字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0</li>
+<li>布尔值：true转成1，false转成0</li>
+<li>undefined：转成NaN</li>
+<li>null：转成0</li>
+</ul>
+<h4 id="2-对象的转换规则"><a href="#2-对象的转换规则" class="headerlink" title="2,对象的转换规则"></a>2,对象的转换规则</h4><ul>
+<li>先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行后续步骤。</li>
+<li>如果valueOf方法返回复合类型的值，再调用对象自身的toString方法，如果toString方法返回原始类型的值，则对该值使用Number方法，不再进行后续步骤。</li>
+<li>如果toString方法返回的是复合类型的值，则报错。</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>valueOf， toString 待补</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>(<span class="string">"123"</span>) <span class="comment">// 123</span></div><div class="line"> </div><div class="line"><span class="built_in">Number</span>(<span class="string">"123abc"</span>) <span class="comment">// NaN</span></div><div class="line"> </div><div class="line"><span class="built_in">Number</span>(<span class="string">""</span>) <span class="comment">// 0</span></div><div class="line"> </div><div class="line"><span class="built_in">Number</span>(<span class="literal">false</span>) <span class="comment">// 0</span></div><div class="line"> </div><div class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>) <span class="comment">// NaN</span></div><div class="line"> </div><div class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></div><div class="line"></div><div class="line"><span class="built_in">Number</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;) <span class="comment">// NaN</span></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="显式转换成String"><a href="#显式转换成String" class="headerlink" title="显式转换成String"></a>显式转换成String</h3><h4 id="1，原始类型值的转换规则"><a href="#1，原始类型值的转换规则" class="headerlink" title="1，原始类型值的转换规则"></a>1，原始类型值的转换规则</h4><ul>
+<li>数值：转为相应的字符串。</li>
+<li>字符串：转换后还是原来的值。</li>
+<li>布尔值：true转为“true”，false转为“false”。</li>
+<li>undefined：转为“undefined”。</li>
+<li>null：转为“null”。</li>
+</ul>
+<h4 id="2-对象的转换规则-1"><a href="#2-对象的转换规则-1" class="headerlink" title="2,对象的转换规则"></a>2,对象的转换规则</h4><ul>
+<li>先调用toString方法，如果toString方法返回的是原始类型的值，则对该值使用String方法，不再进行以下步骤。</li>
+<li>如果toString方法返回的是复合类型的值，再调用valueOf方法，如果valueOf方法返回的是原始类型的值，则对该值使用String方法，不再进行以下步骤。</li>
+<li>如果valueOf方法返回的是复合类型的值，则报错</li>
+</ul>
+<blockquote>
+<p>跟转换成 Number 相比，只是1,2条换了顺序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>(<span class="number">123</span>) <span class="comment">// "123"</span></div><div class="line"></div><div class="line"><span class="built_in">String</span>(<span class="string">"abc"</span>) <span class="comment">// "abc"</span></div><div class="line"> </div><div class="line"><span class="built_in">String</span>(<span class="literal">true</span>) <span class="comment">// "true"</span></div><div class="line"> </div><div class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>) <span class="comment">// "undefined"</span></div><div class="line"> </div><div class="line"><span class="built_in">String</span>(<span class="literal">null</span>) <span class="comment">// "null"</span></div><div class="line"></div><div class="line"><span class="built_in">String</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;) <span class="comment">// "[object Object]"  我是跳转门（待补^_^）</span></div></pre></td></tr></table></figure>
+<h3 id="显式转换成-Boolean"><a href="#显式转换成-Boolean" class="headerlink" title="显式转换成 Boolean"></a>显式转换成 Boolean</h3><h4 id="1，原始类型值的转换规则-1"><a href="#1，原始类型值的转换规则-1" class="headerlink" title="1，原始类型值的转换规则"></a>1，原始类型值的转换规则</h4><p>以下7个值的转化结果为false，其他的值全部为true。</p>
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>-0 +0 0 </li>
+<li>NaN</li>
+<li>”（空字符串）</li>
+</ul>
+<h4 id="2-对象的转换规则-2"><a href="#2-对象的转换规则-2" class="headerlink" title="2,对象的转换规则"></a>2,对象的转换规则</h4><ul>
+<li>所有对象的布尔值都是true，甚至连false对应的布尔对象也是true<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Boolean</span>(<span class="literal">undefined</span>) <span class="comment">// false</span></div><div class="line"> </div><div class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>) <span class="comment">// false</span></div><div class="line"> </div><div class="line"><span class="built_in">Boolean</span>(<span class="number">0</span>) <span class="comment">// false</span></div><div class="line"> </div><div class="line"><span class="built_in">Boolean</span>(<span class="literal">NaN</span>) <span class="comment">// false</span></div><div class="line"> </div><div class="line"><span class="built_in">Boolean</span>(<span class="string">''</span>) <span class="comment">// false</span></div><div class="line"></div><div class="line"><span class="built_in">Boolean</span>(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)) <span class="comment">// true</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>到这里显式转换就讲完了，本着知其然也要知其所以然的原则，把规范奉上。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ECMA-262, section 9.2, page 30</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ToBoolean</span>(<span class="params">x</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (IS_BOOLEAN(x)) <span class="keyword">return</span> x;</div><div class="line">  <span class="comment">// 字符串转布尔型时，如果length不为0就返回true</span></div><div class="line">  <span class="keyword">if</span> (IS_STRING(x)) <span class="keyword">return</span> x.length != <span class="number">0</span>;</div><div class="line">  <span class="keyword">if</span> (x == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  <span class="comment">// 数字转布尔型时，变量不为0或NAN时返回true</span></div><div class="line">  <span class="keyword">if</span> (IS_NUMBER(x)) <span class="keyword">return</span> !((x == <span class="number">0</span>) || NUMBER_IS_NAN(x));</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ECMA-262, section 9.3, page 31.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ToNumber</span>(<span class="params">x</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (IS_NUMBER(x)) <span class="keyword">return</span> x;</div><div class="line">  <span class="comment">// 字符串转数字调用StringToNumber</span></div><div class="line">  <span class="keyword">if</span> (IS_STRING(x)) &#123;</div><div class="line">    <span class="keyword">return</span> %_HasCachedArrayIndex(x) ? %_GetCachedArrayIndex(x)</div><div class="line">                                    : %StringToNumber(x);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 布尔型转数字时true返回1，false返回0</span></div><div class="line">  <span class="keyword">if</span> (IS_BOOLEAN(x)) <span class="keyword">return</span> x ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">  <span class="comment">// undefined返回NAN</span></div><div class="line">  <span class="keyword">if</span> (IS_UNDEFINED(x)) <span class="keyword">return</span> NAN;</div><div class="line">  <span class="comment">// Symbol抛出异常，例如：Symbol() + 1</span></div><div class="line">  <span class="keyword">if</span> (IS_SYMBOL(x)) <span class="keyword">throw</span> MakeTypeError(kSymbolToNumber);</div><div class="line">  <span class="keyword">return</span> (IS_NULL(x)) ? <span class="number">0</span> : ToNumber(DefaultNumber(x));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ECMA-262, section 9.8, page 35.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ToString</span>(<span class="params">x</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (IS_STRING(x)) <span class="keyword">return</span> x;</div><div class="line">  <span class="comment">// 数字转字符串，调用内部的_NumberToString</span></div><div class="line">  <span class="keyword">if</span> (IS_NUMBER(x)) <span class="keyword">return</span> %_NumberToString(x);</div><div class="line">  <span class="comment">// 布尔型转字符串，true返回字符串true</span></div><div class="line">  <span class="keyword">if</span> (IS_BOOLEAN(x)) <span class="keyword">return</span> x ? <span class="string">'true'</span> : <span class="string">'false'</span>;</div><div class="line">  <span class="comment">// undefined转字符串，返回undefined</span></div><div class="line">  <span class="keyword">if</span> (IS_UNDEFINED(x)) <span class="keyword">return</span> <span class="string">'undefined'</span>;</div><div class="line">  <span class="comment">// Symbol抛出异&lt;</span></div><div class="line">  <span class="keyword">if</span> (IS_SYMBOL(x)) <span class="keyword">throw</span> MakeTypeError(kSymbolToString);</div><div class="line">  <span class="keyword">return</span> (IS_NULL(x)) ? <span class="string">'null'</span> : ToString(DefaultString(x));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/13/显式类型转换/" class="archive-article-date">
+  	<time datetime="2016-11-13T09:23:29.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/11/15/toPrimitive/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          toPrimitive
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/13/javascript类型转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript类型转换</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="显式类型转换" data-title="显式类型转换" data-url="http://yoursite.com/2016/11/13/显式类型转换/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 asuishi
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -139,6 +139,176 @@
       <div class="body-wrap">
         
   
+    <article id="post-toPrimitive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/15/toPrimitive/">toPrimitive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ToPrimitive"><a href="#ToPrimitive" class="headerlink" title="ToPrimitive"></a>ToPrimitive</h3><p>ToPrimitive 用于将参数转换成原始类型(Primitive)<br>具体的逻辑参见<a href="https://es5.github.io/#x9.1">规范</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ToPrimitive</span>(<span class="params">x, hint</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (!IS_OBJECT(x)) <span class="keyword">return</span> x;</div><div class="line">  <span class="keyword">if</span> (hint == NO_HINT) hint = (IS_DATE(x)) ? STRING_HINT : NUMBER_HINT;</div><div class="line">  <span class="keyword">return</span> (hint == NUMBER_HINT) ? DefaultNumber(x) : DefaultString(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/11/15/toPrimitive/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/15/toPrimitive/" class="archive-article-date">
+  	<time datetime="2016-11-15T13:30:21.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-15</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-显式类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/13/显式类型转换/">显式类型转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="显式转换成Number"><a href="#显式转换成Number" class="headerlink" title="显式转换成Number"></a>显式转换成Number</h3><h4 id="1-原始类型值的转换规则"><a href="#1-原始类型值的转换规则" class="headerlink" title="1,原始类型值的转换规则"></a>1,原始类型值的转换规则</h4><ul>
+<li>数值：转换后还是原来的值</li>
+<li>字符串：如果可以被解析为数值，则转换为相应的数值，否则得到NaN。空字符串转为0</li>
+<li>布尔值：true转成1，false转成0</li>
+<li>undefined：转成NaN</li>
+<li>null：转成0</li>
+</ul>
+<h4 id="2-对象的转换规则"><a href="#2-对象的转换规则" class="headerlink" title="2,对象的转换规则"></a>2,对象的转换规则</h4><ul>
+<li>先调用对象自身的valueOf方法，如果该方法返回原始类型的值（数值、字符串和布尔值），则直接对该值使用Number方法，不再进行后续步骤。</li>
+<li>如果valueOf方法返回复合类型的值，再调用对象自身的toString方法，如果toString方法返回原始类型的值，则对该值使用Number方法，不再进行后续步骤。</li>
+<li>如果toString方法返回的是复合类型的值，则报错。</li>
+</ul>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/11/13/显式类型转换/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/13/显式类型转换/" class="archive-article-date">
+  	<time datetime="2016-11-13T09:23:29.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-javascript类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/13/javascript类型转换/">javascript类型转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript中的类型是一个前端经常被问到的问题，虽然实际写代码中能够避过一些规则，但是不熟悉的话，总是会被一些奇怪的错误搞得摸不到头脑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if([])&#123;</div><div class="line">    console.log(&quot;有输出吗&quot;);  //答案是有</div><div class="line">&#125;</div><div class="line"></div><div class="line">[] == true  // false</div></pre></td></tr></table></figure>
+<h3 id="WTF-这。。。还能不能愉快地玩耍了"><a href="#WTF-这。。。还能不能愉快地玩耍了" class="headerlink" title="WTF 这。。。还能不能愉快地玩耍了"></a>WTF 这。。。还能不能愉快地玩耍了</h3><p>搞清这个问题之前，先来点基本知识</p>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/11/13/javascript类型转换/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/13/javascript类型转换/" class="archive-article-date">
+  	<time datetime="2016-11-13T08:16:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-博客搬家" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -237,56 +407,10 @@
 
 
   
-    <article id="post-关于markdown语法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/关于markdown语法/">关于markdown语法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<pre><code>标题
-</code></pre><h1 id="只要在这段文字前加-号即可。"><a href="#只要在这段文字前加-号即可。" class="headerlink" title="只要在这段文字前加 # 号即可。"></a>只要在这段文字前加 # 号即可。</h1></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">### 三级标题</div></pre></td></tr></table></figure>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/04/07/关于markdown语法/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/04/07/关于markdown语法/" class="archive-article-date">
-  	<time datetime="2016-04-07T11:24:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-07</time>
-</a>
-      
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -348,7 +472,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				
+    				<a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a>
     			</div>
     	</section>
     
